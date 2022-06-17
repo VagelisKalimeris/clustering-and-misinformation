@@ -1,8 +1,6 @@
 ###############################################################################
 # AUTHOR        : Evangelos Kalimeris                                         #
 #                                                                             #
-# COURSE NAME   : Complex Network Dynamics                                    #
-#                                                                             #
 # PROJECT NAME  : Clustering and Misinformation                               #
 #                                                                             #
 # FILE NAME     : main.py                                                     #
