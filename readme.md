@@ -1,7 +1,7 @@
 # Project Description
 
 This was an analysis of a social network graph, of real and fake news tweeters,
-performed for my CS 'Complex Network Dynamics' course.
+performed for my 'Complex Network Dynamics' CS course.
 
 The concept hypothesis and results, are being described in detail in 
 [Clustering_and_Misinformation_Report.pdf](Clustering_and_Misinformation_Report.pdf) 
