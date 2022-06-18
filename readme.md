@@ -1,7 +1,7 @@
 # Project Description
 
 This was an analysis of a social network graph, of real and fake news tweeters,
-performed for my 'Complex Network Dynamics' CS course.
+performed for my *Complex Network Dynamics* CS course.
 
 The concept hypothesis and results, are being described in detail in 
 [Clustering_and_Misinformation_Report.pdf](Clustering_and_Misinformation_Report.pdf) 
@@ -77,10 +77,10 @@ All outputs for the four first 4 tasks are on the terminal.
 ### Output files
 
 The following files are being created by the script and/or being provided:
-- 'realreal.csv', 'realfake.csv', 'fakereal.csv',
-'fakefake.csv' are produced for both networks from the script, for Gephi 
+- **realreal.csv**, **realfake.csv**, **fakereal.csv**,
+**fakefake.csv** are produced for both networks from the script, for Gephi 
 analysis.
-- 'Real.csv', 'Fake.csv' for each network, are created by concatenating 
+- **Real.csv**, **Fake.csv** for each network, are created by concatenating 
 realreal + realfake ect, files for each network.
-- Gephi analysis output is saved and stored on 'gephi_analysis_results' 
+- Gephi analysis output is saved and stored on **gephi_analysis_results** 
 directory.
