@@ -63,6 +63,7 @@ bf_fake_posters_arr = set(bf_fake_posts_arr) - bf_both_posters_arr
 bf_real_posters_sum, bf_fake_posters_sum = len(bf_real_posters_arr), \
                                            len(bf_fake_posters_arr)
 bf_both_posters_sum = len(bf_both_posters_arr)
+bf_sum_list = (bf_real_posters_sum, bf_fake_posters_sum, bf_both_posters_sum)
 
 # POLITIFACT
 pf_real_posts_arr, pf_fake_posts_arr,pf_real_retweets_sum, \
@@ -74,18 +75,14 @@ pf_fake_posters_arr = set(pf_fake_posts_arr) - pf_both_posters_arr
 pf_real_posters_sum, pf_fake_posters_sum = len(pf_real_posters_arr), \
                                            len(pf_fake_posters_arr)
 pf_both_posters_sum = len(pf_both_posters_arr)
+pf_sum_list = (pf_real_posters_sum, pf_fake_posters_sum, pf_both_posters_sum)
 
-# Prints
-print("\n" + str(bf_real_posters_sum), "total users posted real news on "
-                                        "BuzzFeed.")
-print(str(bf_fake_posters_sum), "total users posted fake news on BuzzFeed.")
-print(str(bf_both_posters_sum), "total users posted both real and fake news "
-                              "on BuzzFeed.")
-print("\n" + str(pf_real_posters_sum), "total users posted real news on "
-                                        "PolitiFact.")
-print(str(pf_fake_posters_sum), "total users posted fake news on PolitiFact.")
-print(str(pf_both_posters_sum), "total users posted both real and fake news "
-                              "on PolitiFact.")
+
+# Print info to console
+for feed, sum in zip(('BuzzFeed', 'PolitiFact'), (bf_sum_list, pf_sum_list)):
+    print('')
+    for news, num in zip(('real', 'fake', 'both real and fake'), (0, 1, 2)):
+        print(str(sum[num]) + ' total users posted ' + news + ' news on ' + feed)
 
 
 ################################################################################
