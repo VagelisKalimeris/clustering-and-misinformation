@@ -12,7 +12,9 @@ from util_funcs import get_posts_and_retweets, get_avg_and_max_links, \
     get_avg_cross_group_links, export_connectivity
 
 
-# News ranges
+################################################################################
+#                                 NEWS RANGES                                  #
+################################################################################
 BF_REAL_RANGE, BF_FAKE_RANGE, PF_REAL_RANGE, PF_FAKE_RANGE = \
     range(1, 92), range(92, 183), range(1, 121), range(121, 241)
 
@@ -93,15 +95,15 @@ print(str(pf_both_posters_sum), "total users posted both real and fake news "
 #                                                                              #
 ################################################################################
 # BUZZFEED
-bf_real_tweets_avg = mean(bf_real_posts_arr.count(id) for id in
-                            bf_real_posters_arr)
-bf_fake_tweets_avg = mean(bf_fake_posts_arr.count(id) for id in
+bf_real_tweets_avg = mean(bf_real_posts_arr.count(ID) for ID in
+                          bf_real_posters_arr)
+bf_fake_tweets_avg = mean(bf_fake_posts_arr.count(ID) for ID in
                             bf_fake_posters_arr)
 
 # POLITIFACT
-pf_real_tweets_avg = mean(pf_real_posts_arr.count(id) for id in
+pf_real_tweets_avg = mean(pf_real_posts_arr.count(ID) for ID in
                             pf_real_posters_arr)
-pf_fake_tweets_avg = mean(pf_fake_posts_arr.count(id) for id in
+pf_fake_tweets_avg = mean(pf_fake_posts_arr.count(ID) for ID in
                             pf_fake_posters_arr)
 
 # BUZZFEED
