@@ -23,6 +23,7 @@ BF_REAL_RANGE, BF_FAKE_RANGE, PF_REAL_RANGE, PF_FAKE_RANGE = \
 #                             DEAL WITH FILE I/O                               #
 ################################################################################
 # Open files relating users with news
+# todo: Close files
 with open('Data/BuzzFeed/BuzzFeedNewsUser.txt', 'r') as file:
     buzzfeed_news_user = [str.rstrip().split('\t') for str in file.readlines()]
 with open('Data/PolitiFact/PolitiFactNewsUser.txt', 'r') as file:
@@ -80,10 +81,10 @@ bf_sum_list, pf_sum_list = \
     (pf_real_posters_sum, pf_fake_posters_sum, pf_both_posters_sum)
 
 # Print info to console
+print('Task 1:')
 for feed, sum in zip(('BuzzFeed', 'PolitiFact'), (bf_sum_list, pf_sum_list)):
-    print()
     for news, i in zip(('real', 'fake', 'both real and fake'), range(3)):
-        print(str(sum[i]), 'total users posted', news, 'news on', feed)
+        print('\t', str(sum[i]), 'total users posted', news, 'news on', feed)
 
 
 ################################################################################
@@ -117,11 +118,11 @@ bf_avg_list, pf_avg_list = ((bf_real_tweets_avg, bf_fake_tweets_avg), (
     pf_fake_tweets_avg), (pf_real_retweets_avg, pf_fake_retweets_avg))
 
 # Print info to console
+print('\nTask 2:')
 for feed, avgs in zip(('BuzzFeed', 'PolitiFact'), (bf_avg_list, pf_avg_list)):
-    print()
     for rate, i in zip(('tweet', 're-tweet'), range(2)):
         for news, j in zip(('real', 'fake'), range(2)):
-            print('Average', rate, 'rate for', feed, news,'news:',
+            print('\tAverage', rate, 'rate for', feed, news,'news:',
                   str(round(avgs[i][j], 2)))
 
 
@@ -165,23 +166,21 @@ pf_fake_avg_outlinks, pf_max_fake_outlinks = \
 pf_fake_avg_inlinks, pf_max_fake_inlinks = \
     get_avg_and_max_links(pf_fake_posters_arr, pf_to_arr, pf_fake_posters_sum)
 
+bf_avg_max_list, pf_avg_max_list = (((bf_real_avg_outlinks, bf_max_real_outlinks),
+    (bf_real_avg_inlinks, bf_max_real_inlinks)), ((bf_fake_avg_outlinks,
+    bf_max_fake_outlinks), (bf_fake_avg_inlinks, bf_max_fake_inlinks))), (((
+    pf_real_avg_outlinks, pf_max_real_outlinks), (pf_real_avg_inlinks,
+    pf_max_real_inlinks)), ((pf_fake_avg_outlinks, pf_max_fake_outlinks), (
+    pf_fake_avg_inlinks, pf_max_fake_inlinks)))
+
 # Print info to console
-print("\nAverage buzzfeed users following of users that posted real news:",
-      str(round(bf_real_avg_outlinks, 2)), ", max :", str(bf_max_real_outlinks))
-print("Average buzzfeed followers of users that posted real news:",
-      str(round(bf_real_avg_inlinks, 2)), ", max :", str(bf_max_real_inlinks))
-print("Average buzzfeed users following of users that posted fake news: ",
-      str(round(bf_fake_avg_outlinks, 2)), ", max :", str(bf_max_fake_outlinks))
-print("Average buzzfeed followers of users that posted fake news: ",
-      str(round(bf_fake_avg_inlinks, 2)), ", max :", str(bf_max_fake_inlinks))
-print("\nAverage politifact users following of users that posted real news:",
-      str(round(pf_real_avg_outlinks, 2)), ", max :", str(pf_max_real_outlinks))
-print("Average politifact followers of users that posted real news:",
-      str(round(pf_real_avg_inlinks, 2)), ", max :", str(pf_max_real_inlinks))
-print("Average politifact users following of users that posted fake news: ",
-      str(round(pf_fake_avg_outlinks, 2)), ", max :", str(pf_max_fake_outlinks))
-print("Average politifact followers of users that posted fake news: ",
-      str(round(pf_fake_avg_inlinks, 2)), ", max :", str(pf_max_fake_inlinks))
+print('\nTask 3:')
+for feed, avgs in zip(('BuzzFeed', 'PolitiFact'), (bf_avg_max_list, pf_avg_max_list)):
+    for news, i in zip(('Real', 'Fake'), range(2)):
+        for linktype, j in zip(('following', 'followers'), range(2)):
+            print('\tAverage', feed, 'users', linktype, 'of users that posted', news,
+                  'news:', str(round(avgs[i][j][0], 2)), '[group max:',
+                  str(round(avgs[i][j][1], 2)), ']')
 
 
 ################################################################################
@@ -206,7 +205,10 @@ pf_avg_real2real, pf_avg_real2fake, pf_avg_fake2fake, pf_avg_fake2real = \
                   pf_fake_posters_arr, pf_real_posters_sum, pf_fake_posters_sum)
 
 # Print info to console
-print("\nThe avg of connections from real news posters to real news posters"
+print('\nTask 4:')
+# todo: Continue here
+
+print("The avg of connections from real news posters to real news posters"
       " on buzzfeed: " + str(round(bf_avg_real2real, 2)))
 print("The avg of connections from real news posters to fake news posters"
       " on buzzfeed: " + str(round(bf_avg_fake2real, 2)))
@@ -237,4 +239,6 @@ export_connectivity('Data/BuzzFeed/', buzzfeed_user_user, bf_real_posters_arr,
 # POLITIFACT
 export_connectivity('Data/PolitiFact/', politifact_user_user,
                     pf_real_posters_arr, pf_fake_posters_arr)
+
+print('\nTask 5:\n\tExport DONE.')
 
