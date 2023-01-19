@@ -81,3 +81,34 @@ def export_connectivity(dir, user_user, real_posters_arr, fake_posters_arr):
         elif int(row[0]) in fake_posters_arr and int(row[1]) in \
                                                 real_posters_arr:
             fr_writer.writerow(row)
+
+
+def print_task_1_results(bf_sum_list, pf_sum_list):
+    for feed, sum in zip(('BuzzFeed', 'PolitiFact'), (bf_sum_list, pf_sum_list)):
+        for news, i in zip(('real', 'fake', 'both real and fake'), range(3)):
+            print('\t', str(sum[i]), 'total users posted', news, 'news on', feed)
+
+
+def print_task_2_results(bf_avg_list, pf_avg_list):
+    for feed, avgs in zip(('BuzzFeed', 'PolitiFact'), (bf_avg_list, pf_avg_list)):
+        for rate, i in zip(('tweet', 're-tweet'), range(2)):
+            for news, j in zip(('real', 'fake'), range(2)):
+                print('\tAverage', rate, 'rate for', feed, news, 'news:',
+                      str(round(avgs[i][j], 2)))
+
+
+def print_task_3_results(bf_avg_max_list, pf_avg_max_list):
+    for feed, avgs in zip(('BuzzFeed', 'PolitiFact'), (bf_avg_max_list, pf_avg_max_list)):
+        for news, i in zip(('real', 'fake'), range(2)):
+            for linktype, j in zip(('following', 'followers'), range(2)):
+                print('\tAverage', feed, 'users', linktype, 'of users that posted', news,
+                      'news:', str(round(avgs[i][j][0], 2)), '[group max:',
+                      str(round(avgs[i][j][1], 2)), ']')
+
+
+def print_task_4_results(bf_avg_conn_list, pf_avg_conn_list):
+    for feed, avgs in zip(('BuzzFeed', 'PolitiFact'), (bf_avg_conn_list, pf_avg_conn_list)):
+        for news_from, i in zip(('real', 'fake'), range(2)):
+            for news_to, j in zip(('real', 'fake'), range(2)):
+                print('\tAverage of connections from', news_from, 'news posters to',
+                      news_to, 'news posters on', feed, ':', str(round(avgs[i][j], 2)))
