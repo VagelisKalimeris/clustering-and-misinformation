@@ -27,6 +27,10 @@ def get_posts_and_retweets(news_user, real_range, fake_range):
     return real_posts_arr, fake_posts_arr, real_retweets_sum, fake_retweets_sum
 
 
+def create_in_out_link_arrays(user_user_arr):
+    return [int(x[0]) for x in user_user_arr], [int(x[1]) for x in user_user_arr]
+
+
 def get_avg_and_max_links(arr, dir_arr, total):
     temp_sum, max_link = 0, 0
     for user in arr:
@@ -110,7 +114,7 @@ def export_connectivity(dir, user_user, real_posters_arr, fake_posters_arr):
 
 
 ###############################################################################
-#                          PRINT FUNCTIONS SECTION                         #
+#                       TASKS PRINT FUNCTIONS SECTION                         #
 ###############################################################################
 def print_task_1_results(bf_sum_list, pf_sum_list):
     for feed, sum in zip(('BuzzFeed', 'PolitiFact'), (bf_sum_list, pf_sum_list)):

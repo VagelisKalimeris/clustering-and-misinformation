@@ -13,8 +13,7 @@ from statistics import mean
 from util_funcs import get_posts_and_retweets, get_avg_and_max_links, \
     get_avg_cross_group_links, export_connectivity, print_task_1_results, \
     print_task_2_results, print_task_3_results, print_task_4_results, \
-    export_data_to_csv_files, get_data_from_files
-
+    export_data_to_csv_files, get_data_from_files, create_in_out_link_arrays
 
 ################################################################################
 #                                 NEWS RANGES                                  #
@@ -117,8 +116,7 @@ print_task_2_results(((bf_real_tweets_avg, bf_fake_tweets_avg), (
 ################################################################################
 # BUZZFEED
 # Create Inlink and Outlink arrays
-bf_from_arr, bf_to_arr = [int(x[0]) for x in buzzfeed_user_user], \
-                   [int(x[1]) for x in buzzfeed_user_user]
+bf_from_arr, bf_to_arr = create_in_out_link_arrays(buzzfeed_user_user)
 # Real Outlinks
 bf_real_avg_outlinks, bf_max_real_outlinks = \
     get_avg_and_max_links(bf_real_posters_arr, bf_from_arr, bf_real_posters_sum)
@@ -134,8 +132,7 @@ bf_fake_avg_inlinks, bf_max_fake_inlinks = \
 
 # POLITIFACT
 # Create Inlink and Outlink arrays
-pf_from_arr, pf_to_arr = [int(x[0]) for x in politifact_user_user], \
-                   [int(x[1]) for x in politifact_user_user]
+pf_from_arr, pf_to_arr = create_in_out_link_arrays(politifact_user_user)
 # Real Outlinks
 pf_real_avg_outlinks, pf_max_real_outlinks = \
     get_avg_and_max_links(pf_real_posters_arr, pf_from_arr, pf_real_posters_sum)
