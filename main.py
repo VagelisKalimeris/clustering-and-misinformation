@@ -5,6 +5,9 @@
 #                                                                             #
 # FILE NAME     : main.py                                                     #
 #                                                                             #
+# OBJECTIVE     : Analyzes datasets and produces results for tasks 1-4 and    #
+#                 data for further analysis for task 5                        #
+#                                                                             #
 ###############################################################################
 from statistics import mean
 from util_funcs import get_posts_and_retweets, get_avg_and_max_links, \
