@@ -8,6 +8,23 @@
 ###############################################################################
 import csv
 
+def open_data_from_files(files_list):
+    result_lists = []
+    for file in files_list:
+        with open(file, 'r') as file:
+            result_lists.append([str.rstrip().split('\t') for str in file.readlines()])
+    return result_lists
+
+
+def export_data(users_lists, files_list):
+    for users_list, file in zip(users_lists, files_list):
+        with open(file, 'w') as csv_file:
+            writer = csv.writer(csv_file)
+            writer.writerow(['Source', 'Target'])
+            for line in users_list:
+                writer.writerow(line)
+
+
 def get_posts_and_retweets(news_user, real_range, fake_range):
     real_posts_arr, fake_posts_arr, = [], []
     real_retweets_sum, fake_retweets_sum = 0, 0

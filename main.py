@@ -10,7 +10,8 @@ import csv
 from statistics import mean
 from util_funcs import get_posts_and_retweets, get_avg_and_max_links, \
     get_avg_cross_group_links, export_connectivity, print_task_1_results, \
-    print_task_2_results, print_task_3_results, print_task_4_results
+    print_task_2_results, print_task_3_results, print_task_4_results, \
+    export_data, open_data_from_files
 
 ################################################################################
 #                                 NEWS RANGES                                  #
@@ -22,29 +23,18 @@ BF_REAL_RANGE, BF_FAKE_RANGE, PF_REAL_RANGE, PF_FAKE_RANGE = \
 ################################################################################
 #                             DEAL WITH FILE I/O                               #
 ################################################################################
-# Open files relating users with news
-# todo: Close files
-with open('Data/BuzzFeed/BuzzFeedNewsUser.txt', 'r') as file:
-    buzzfeed_news_user = [str.rstrip().split('\t') for str in file.readlines()]
-with open('Data/PolitiFact/PolitiFactNewsUser.txt', 'r') as file:
-    politifact_news_user = [str.rstrip().split('\t') for str in file.readlines()]
-# Open files relating users to users
-with open('Data/BuzzFeed/BuzzFeedUserUser.txt', 'r') as file:
-    buzzfeed_user_user = [str.rstrip().split('\t') for str in file.readlines()]
-with open('Data/PolitiFact/PolitiFactUserUser.txt', 'r') as file:
-    politifact_user_user = [str.rstrip().split('\t') for str in file.readlines()]
+# Open files relating users to news and users to users
+buzzfeed_news_user, politifact_news_user, buzzfeed_user_user, \
+    politifact_user_user = open_data_from_files((
+    'Data/BuzzFeed/BuzzFeedNewsUser.txt',
+    'Data/PolitiFact/PolitiFactNewsUser.txt',
+    'Data/BuzzFeed/BuzzFeedUserUser.txt',
+    'Data/PolitiFact/PolitiFactUserUser.txt'))
 
-# Export user-user data to csv for Gephi analysis
-with open('Data/BuzzFeed/BuzzFeedUserUser.csv', 'w') as bf_user_user_csv:
-    writer = csv.writer(bf_user_user_csv)
-    writer.writerow(['Source', 'Target'])
-    for line in buzzfeed_user_user:
-        writer.writerow(line)
-with open('Data/PolitiFact/PolitiFactUserUser.csv', 'w') as pf_user_user_csv:
-    writer = csv.writer(pf_user_user_csv)
-    writer.writerow(['Source', 'Target'])
-    for line in politifact_user_user:
-        writer.writerow(line)
+# Export user-user data from created lists, to csv files, for Gephi analysis
+export_data((buzzfeed_user_user, politifact_user_user),
+    ('Data/BuzzFeed/BuzzFeedUserUser.csv',
+     'Data/PolitiFact/PolitiFactUserUser.csv'))
 
 
 ################################################################################
