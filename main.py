@@ -6,12 +6,12 @@
 # FILE NAME     : main.py                                                     #
 #                                                                             #
 ###############################################################################
-import csv
 from statistics import mean
 from util_funcs import get_posts_and_retweets, get_avg_and_max_links, \
     get_avg_cross_group_links, export_connectivity, print_task_1_results, \
     print_task_2_results, print_task_3_results, print_task_4_results, \
-    export_data, open_data_from_files
+    export_data_to_csv_files, get_data_from_files
+
 
 ################################################################################
 #                                 NEWS RANGES                                  #
@@ -25,16 +25,16 @@ BF_REAL_RANGE, BF_FAKE_RANGE, PF_REAL_RANGE, PF_FAKE_RANGE = \
 ################################################################################
 # Open files relating users to news and users to users
 buzzfeed_news_user, politifact_news_user, buzzfeed_user_user, \
-    politifact_user_user = open_data_from_files((
+    politifact_user_user = get_data_from_files((
     'Data/BuzzFeed/BuzzFeedNewsUser.txt',
     'Data/PolitiFact/PolitiFactNewsUser.txt',
     'Data/BuzzFeed/BuzzFeedUserUser.txt',
     'Data/PolitiFact/PolitiFactUserUser.txt'))
 
 # Export user-user data from created lists, to csv files, for Gephi analysis
-export_data((buzzfeed_user_user, politifact_user_user),
+export_data_to_csv_files((buzzfeed_user_user, politifact_user_user),
     ('Data/BuzzFeed/BuzzFeedUserUser.csv',
-     'Data/PolitiFact/PolitiFactUserUser.csv'))
+    'Data/PolitiFact/PolitiFactUserUser.csv'))
 
 
 ################################################################################
@@ -200,4 +200,3 @@ export_connectivity('Data/PolitiFact/', politifact_user_user,
 
 # Print task results to console
 print('\nTask 5:\n\tExport DONE')
-

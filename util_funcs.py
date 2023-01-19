@@ -5,26 +5,15 @@
 #                                                                             #
 # FILE NAME     : util_funcs.py                                               #
 #                                                                             #
+# OBJECTIVE     : Provides utility functions used by the main script          #
+#                                                                             #
 ###############################################################################
 import csv
 
-def open_data_from_files(files_list):
-    result_lists = []
-    for file in files_list:
-        with open(file, 'r') as file:
-            result_lists.append([str.rstrip().split('\t') for str in file.readlines()])
-    return result_lists
 
-
-def export_data(users_lists, files_list):
-    for users_list, file in zip(users_lists, files_list):
-        with open(file, 'w') as csv_file:
-            writer = csv.writer(csv_file)
-            writer.writerow(['Source', 'Target'])
-            for line in users_list:
-                writer.writerow(line)
-
-
+###############################################################################
+#                        CALCULATION FUNCTIONS SECTION                        #
+###############################################################################
 def get_posts_and_retweets(news_user, real_range, fake_range):
     real_posts_arr, fake_posts_arr, = [], []
     real_retweets_sum, fake_retweets_sum = 0, 0
@@ -68,6 +57,26 @@ def get_avg_cross_group_links(user_user, real_posters_arr, fake_posters_arr,
            fake2fake / fake_users, fake2real / fake_users
 
 
+###############################################################################
+#                          FILE I/O FUNCTIONS SECTION                         #
+###############################################################################
+def get_data_from_files(files_list):
+    result_lists = []
+    for file in files_list:
+        with open(file, 'r') as file:
+            result_lists.append([str.rstrip().split('\t') for str in file.readlines()])
+    return result_lists
+
+
+def export_data_to_csv_files(users_lists, filenames_list):
+    for users_list, file in zip(users_lists, filenames_list):
+        with open(file, 'w') as csv_file:
+            writer = csv.writer(csv_file)
+            writer.writerow(['Source', 'Target'])
+            for line in users_list:
+                writer.writerow(line)
+
+
 def export_connectivity(dir, user_user, real_posters_arr, fake_posters_arr):
     # Create output files
     rr_writer, rf_writer, ff_writer, fr_writer = \
@@ -100,6 +109,9 @@ def export_connectivity(dir, user_user, real_posters_arr, fake_posters_arr):
             fr_writer.writerow(row)
 
 
+###############################################################################
+#                          PRINT FUNCTIONS SECTION                         #
+###############################################################################
 def print_task_1_results(bf_sum_list, pf_sum_list):
     for feed, sum in zip(('BuzzFeed', 'PolitiFact'), (bf_sum_list, pf_sum_list)):
         for news, i in zip(('real', 'fake', 'both real and fake'), range(3)):
