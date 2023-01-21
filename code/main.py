@@ -28,15 +28,15 @@ BF_REAL_RANGE, BF_FAKE_RANGE, PF_REAL_RANGE, PF_FAKE_RANGE = \
 # Open files relating users to news and users to users
 buzzfeed_news_user, politifact_news_user, buzzfeed_user_user, \
     politifact_user_user = get_data_from_files((
-    'Data/BuzzFeed/BuzzFeedNewsUser.txt',
-    'Data/PolitiFact/PolitiFactNewsUser.txt',
-    'Data/BuzzFeed/BuzzFeedUserUser.txt',
-    'Data/PolitiFact/PolitiFactUserUser.txt'))
+    'data/BuzzFeed/BuzzFeedNewsUser.txt',
+    'data/PolitiFact/PolitiFactNewsUser.txt',
+    'data/BuzzFeed/BuzzFeedUserUser.txt',
+    'data/PolitiFact/PolitiFactUserUser.txt'))
 
 # Export user-user data from created lists, to csv files, for Gephi analysis
 export_data_to_csv_files((buzzfeed_user_user, politifact_user_user),
-    ('Data/BuzzFeed/BuzzFeedUserUser.csv',
-    'Data/PolitiFact/PolitiFactUserUser.csv'))
+    ('data/BuzzFeed/BuzzFeedUserUser.csv',
+    'data/PolitiFact/PolitiFactUserUser.csv'))
 
 
 ################################################################################
@@ -192,10 +192,10 @@ print_task_4_results(((bf_avg_real2real, bf_avg_real2fake), (bf_avg_fake2real,
 #                                                                              #
 ################################################################################
 # BUZZFEED
-export_connectivity('Data/BuzzFeed/', buzzfeed_user_user, bf_real_posters_arr,
+export_connectivity('../data/BuzzFeed/', buzzfeed_user_user, bf_real_posters_arr,
                     bf_fake_posters_arr)
 # POLITIFACT
-export_connectivity('Data/PolitiFact/', politifact_user_user,
+export_connectivity('../data/PolitiFact/', politifact_user_user,
                     pf_real_posters_arr, pf_fake_posters_arr)
 
 # Print task results to console

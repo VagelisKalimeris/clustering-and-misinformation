@@ -4,9 +4,9 @@ This was an analysis of a social network graph, of real and fake news tweeters,
 performed for my *Complex Network Dynamics* CS course.
 
 The concept hypothesis and results, are being described in detail in 
-[Clustering_and_Misinformation_Report.pdf](Clustering_and_Misinformation_Report.pdf) 
+[Clustering_and_Misinformation_Report.pdf](results_report/Clustering_and_Misinformation_Report.pdf) 
 as well as presented in 
-[Clustering_and_Misinformation_Presentation.pdf](Clustering_and_Misinformation_Presentation.pdf)
+[Clustering_and_Misinformation_Presentation.pdf](results_report/Clustering_and_Misinformation_Presentation.pdf)
 .
 
 ---
