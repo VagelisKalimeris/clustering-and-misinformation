@@ -20,7 +20,7 @@ from util_funcs import get_posts_and_retweets, get_avg_and_max_links, \
 ################################################################################
 BF_REAL_RANGE, BF_FAKE_RANGE, PF_REAL_RANGE, PF_FAKE_RANGE = \
     range(1, 92), range(92, 183), range(1, 121), range(121, 241)
-
+BF_DATA_DIR, PF_DATA_DIR = '../data/BuzzFeed/', '../data/PolitiFact/'
 
 ################################################################################
 #                             DEAL WITH FILE I/O                               #
@@ -28,15 +28,15 @@ BF_REAL_RANGE, BF_FAKE_RANGE, PF_REAL_RANGE, PF_FAKE_RANGE = \
 # Open files relating users to news and users to users
 buzzfeed_news_user, politifact_news_user, buzzfeed_user_user, \
     politifact_user_user = get_data_from_files((
-    'data/BuzzFeed/BuzzFeedNewsUser.txt',
-    'data/PolitiFact/PolitiFactNewsUser.txt',
-    'data/BuzzFeed/BuzzFeedUserUser.txt',
-    'data/PolitiFact/PolitiFactUserUser.txt'))
+    BF_DATA_DIR + 'BuzzFeedNewsUser.txt',
+    PF_DATA_DIR + 'PolitiFactNewsUser.txt',
+    BF_DATA_DIR + 'BuzzFeedUserUser.txt',
+    PF_DATA_DIR + 'PolitiFactUserUser.txt'))
 
 # Export user-user data from created lists, to csv files, for Gephi analysis
 export_data_to_csv_files((buzzfeed_user_user, politifact_user_user),
-    ('data/BuzzFeed/BuzzFeedUserUser.csv',
-    'data/PolitiFact/PolitiFactUserUser.csv'))
+    (BF_DATA_DIR + 'BuzzFeedUserUser.csv',
+    PF_DATA_DIR + 'PolitiFactUserUser.csv'))
 
 
 ################################################################################
@@ -192,10 +192,10 @@ print_task_4_results(((bf_avg_real2real, bf_avg_real2fake), (bf_avg_fake2real,
 #                                                                              #
 ################################################################################
 # BUZZFEED
-export_connectivity('../data/BuzzFeed/', buzzfeed_user_user, bf_real_posters_arr,
+export_connectivity(BF_DATA_DIR, buzzfeed_user_user, bf_real_posters_arr,
                     bf_fake_posters_arr)
 # POLITIFACT
-export_connectivity('../data/PolitiFact/', politifact_user_user,
+export_connectivity(PF_DATA_DIR, politifact_user_user,
                     pf_real_posters_arr, pf_fake_posters_arr)
 
 # Print task results to console
